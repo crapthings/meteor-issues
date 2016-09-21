@@ -1,5 +1,5 @@
 {
-  "name": "mobx-playground",
+  "name": "meteor-issues",
   "private": true,
   "scripts": {
     "start": "meteor run"
