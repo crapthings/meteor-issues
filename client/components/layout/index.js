@@ -1,14 +1,14 @@
-import { model, List } from '/client/components/posts'
+const Nav = () => <ul>
+  <li>
+    <a href='/'>home</a>
+  </li>
 
-Components.App = () => <div>
-  <ul>
-    <li>
-      <a href="/">home</a>
-    </li>
+  <li>
+    <a href='/authors'>authors</a>
+  </li>
+</ul>
 
-    <li>
-      <a href="/other">other</a>
-    </li>
-  </ul>
-  <List model={model} />
+Components.App = ({content}) => <div>
+  <Nav />
+  <div>{content()}</div>
 </div>

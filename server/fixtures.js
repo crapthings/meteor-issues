@@ -21,7 +21,8 @@ _.each(collections, collection => {
 
 function makeAuthors () {
   return {
-    name: faker.name.findName()
+    name: faker.name.findName(),
+    createdAt: new Date(),
   }
 }
 

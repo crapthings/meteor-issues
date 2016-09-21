@@ -2,7 +2,6 @@
   "plugins": [
     "add-module-exports",
     "transform-decorators-legacy",
-    "transform-class-properties",
-    "inferno"
+    "transform-class-properties"
   ]
 }
