@@ -2,44 +2,28 @@
 
 import { Authors, Posts } from '/collections'
 
+import { PostList } from './posts'
+
 const Item = ({author}) => {
 
   const toggle = new ReactiveVar(false)
 
   const test = _.throttle(function () {
     toggle.set(!toggle.get())
-  }, 300)
+  }, 1000)
 
-  const _comp = ({show, posts}) => <div>
+  const _comp = ({show}) => <div>
     <h3>
       <button onClick={test}>{show ? 'hide posts' : 'show posts'}</button>
       <span>{author.name}</span>
     </h3>
     {show && <button onClick={() => Meteor.call('posts:random', author._id)}>add random posts</button>}
-    {show && posts.map(post => <p key={post._id}>
-      {post.title}
-    </p>
-    )}
+    {show && <PostList authorId={author._id} />}
   </div>
-
-  let subHandler
 
   const tracker = (props, onData) => {
     const show = toggle.get()
-    const posts = show ? Posts.find({
-      authorId: author._id
-    }, {
-      sort: {
-        createdAt: -1
-      }
-    }).fetch() : []
-    if (show) {
-     subHandler = Meteor.subscribe('postsByAuthorId', author._id)
-     subHandler.ready && onData(null, { show, posts })
-    } else {
-      subHandler && subHandler.stop()
-      onData(null, { show, posts })
-    }
+    onData(null, { show })
   }
 
   const comp = Container(tracker)(_comp)
