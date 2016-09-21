@@ -1,20 +1,34 @@
-Posts.remove({})
+import * as collections from '/collections'
 
-_.times(10, () => Posts.insert({
-  title: faker.lorem.sentence(),
-  createdAt: new Date()
-}))
+const dummy = {
+  makeAuthors,
+  makePosts
+}
 
-Meteor.methods({
-  'posts:empty' () {
-    Posts.remove({})
-  },
+const idsHolder = {}
 
-  'posts:update' (id) {
-    Posts.update(id, {
-      $set: {
-        title: faker.lorem.sentence()
-      }
-    })
-  }
+_.each(collections, collection => {
+
+  const _name = collection._name
+
+  const _Name = _.capitalize(_name)
+
+  collection.remove({})
+
+  idsHolder[_name] = _.times(10, () => collection.insert(dummy['make' + _Name]()))
+
 })
+
+function makeAuthors () {
+  return {
+    name: faker.name.findName()
+  }
+}
+
+function makePosts () {
+  return {
+    title: faker.lorem.sentence(),
+    createdAt: new Date(),
+    authorId: _.sample(idsHolder.authors)
+  }
+}
