@@ -35,10 +35,10 @@ const Item = ({author}) => {
     }).fetch() : []
     if (show) {
      subHandler = Meteor.subscribe('postsByAuthorId', author._id)
-     subHandler.ready && onData(null, { show, posts})
+     subHandler.ready && onData(null, { show, posts })
     } else {
       subHandler && subHandler.stop()
-      onData(null, { show, posts})
+      onData(null, { show, posts })
     }
   }
 

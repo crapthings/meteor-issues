@@ -44,7 +44,7 @@ Meteor.isServer && Meteor.publish('posts', function () {
 })
 
 Meteor.isServer && Meteor.publish('postsByAuthorId', function (authorId) {
-  // Meteor._sleepForMs(3000)
+  Meteor._sleepForMs(500)
 
   return Posts.find({
     authorId
