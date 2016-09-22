@@ -38,7 +38,7 @@ const Subscriptions = {
 
 Components.Test002 = () => <div>
   {__filename}
-  <DataSource subscribe={Subscriptions} children={({...props}) => <div>
+  <DataSource subscribe={Subscriptions} children={(props) => <div>
     {console.log(props)}
     <h3>posts</h3>
     {props.posts.map(post => <p key={post._id}>{post.title}</p>)}
