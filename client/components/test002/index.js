@@ -19,7 +19,7 @@ const DataSource = ({ ...dataSourceProps }) => {
 
     const _data = _dataset
 
-    onData(null, _data)
+    _.every(_subscriptionsAreReady) && onData(null, _data)
 
   }
 

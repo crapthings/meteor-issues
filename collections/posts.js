@@ -35,7 +35,7 @@ Meteor.methods({
 })
 
 Meteor.isServer && Meteor.publish('posts', function () {
-  // Meteor._sleepForMs(1000)
+  Meteor._sleepForMs(2000)
   return Posts.find({}, {
     sort: {
       createdAt: -1
