@@ -14,6 +14,7 @@ const DataSource = ({ ...dataSourceProps }) => {
     const _subscriptionsAreReady = _.map(_subscriptions, (cursor, publishName) => {
       const ready = Meteor.subscribe(publishName).ready()
       _dataset[publishName] = cursor()
+      console.dir(cursor)
       return ready
     })
 
@@ -27,7 +28,7 @@ const DataSource = ({ ...dataSourceProps }) => {
 }
 
 const Subscriptions = {
-  posts () {
+  posts (test = 2) {
     return Posts.find().fetch()
   },
 
